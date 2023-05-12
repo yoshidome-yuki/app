@@ -5,8 +5,8 @@
     <div class="row justify-content-center my-4">
         <div class="col-md-8">
             <div class="card border border-secondary"style= 'background:#f8f4e6;'>
-                <div class="card-header border-secondary text-dark" style= 'background:#dbd7b4;;'>お知らせ</div>
-                <div class="card-body">
+                <div class="card-header border-secondary text-dark" style= 'background:#dbd7b4;'>お知らせ</div>
+                <div class="card-body" >
                     @if($notice)
                 {!! nl2br(e($notice->body)) !!}
                 @else

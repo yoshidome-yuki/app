@@ -49,6 +49,7 @@ class DiaryController extends Controller
         $diary->issue=$request->issue;
         $diary->action=$request->action;
         $diary->save();
+        
         return redirect()->route('players.show',Auth::id());
     }
 

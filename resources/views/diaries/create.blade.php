@@ -42,10 +42,9 @@
                             <label for="meal" class="form-label">食事内容</label>
                             <textarea class="form-control" id="meal" name="meal"></textarea>
                         </div>
-
                         <div class="mb-3">
-                        <label for="menu" class="form-label">個人練習内容</label>
-                            <textarea class="form-control" id="menu" name="menu"></textarea>
+                             <label for="menu" class="form-label">個人練習内容</label>
+                             <textarea class="form-control" id="menu" name="menu"></textarea>
                         </div>
 
                         <div class="mb-3">
@@ -60,10 +59,7 @@
 
                         <div class="form-group row mb-0 justify-content-center">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    登録する
-                                </button>
-                            </div>
+                            <button type="submit"class="btn text-light" style='background:#0f8eae;;'>登録する</button>
                         </div>
                     </form>
                 </div>

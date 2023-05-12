@@ -8,6 +8,8 @@ use App\Notice;
 use App\Menu;
 use App\User;
 use App\Diary;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 
 
 class PlayerController extends Controller
@@ -67,14 +69,29 @@ class PlayerController extends Controller
      */
     public function show($id)
     {
+        $weight_log = [];
+        $dates = [];
         $player=User::find($id);
-        $diaries=Diary::where('user_id',$id)->get();
+        $diaries=Diary::where('user_id',$id)->paginate(7);
+
+        $period = CarbonPeriod::start(Carbon::today()->subDay(7))->untilNow()->toArray();
+        foreach($period as $date){
+            $dates[] = $date->format('Y/m/d');
+        }
+
+        $sevendays=Carbon::today()->subDay(7);
+        $logs=Diary::where('user_id',$id)->whereDate('created_at', '>=', $sevendays)->get();
+        foreach($logs as $log){
+            $weight_log[] = $log->weight; 
+        }   
+
         return view('players.show',[
             'player'=>$player,
-            'diaries'=>$diaries
-
-        ]
-    );}
+            'diaries'=>$diaries,
+            'dates' => $dates,
+            'weight_log'=>$weight_log, 
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.

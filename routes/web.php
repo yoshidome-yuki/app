@@ -14,12 +14,28 @@
 
 
 Auth::routes();
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset/{token}', 'Auth\ResetPasswordController@reset');
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/', 'PlayerController@index')->name('home');
-    Route::resource('players', 'PlayerController');
-    Route::resource('admins', 'AdminController');
-    Route::resource('menus', 'MenuController');
-    Route::resource('notices', 'NoticeController');
-    Route::resource('diaries', 'DiaryController');
-    Route::resource('comments', 'CommentController');
+    Route::resource('players', 'PlayerController', ['only' => [
+        'index', 'show','edit','update'
+    ]]);
+    Route::resource('admins', 'AdminController', ['only' => [
+        'index', 'create','store'
+    ]]);
+    Route::resource('menus', 'MenuController', ['only' => [
+        'create', 'store'
+    ]]);
+    Route::resource('notices', 'NoticeController', ['only' => [
+        'create', 'store'
+    ]]);
+    Route::resource('diaries', 'DiaryController', ['only' => [
+        'create', 'show','store','edit','update','destroy'
+    ]]);
+    Route::resource('comments', 'CommentController', ['only' => [
+        'store'
+    ]]);
 });

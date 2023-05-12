@@ -20,7 +20,7 @@
                 <div class="form-floating">
   <textarea class="form-control" name="body" placeholder="ここに記入してください" id="floatingTextarea2" style="height: 100px"></textarea>
 </div>
-  <button type="submit" class="btn btn-primary mt-3">登録する</button>
+  <button type="submit" class="btn text-light mt-3" style='background:#0f8eae;;'>登録する</button>
 </form>
                 </div>
             </div>

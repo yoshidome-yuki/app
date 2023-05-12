@@ -11,7 +11,7 @@
         <table class="table table-hover">
             <thead class="table-active">
                 <tr>
-                    <th scope="col">日付</th>
+                    <th scope="col">名前</th>
                     <th scope="col">体温</th>
                     <th scope="col">体調</th>
                     <th scope="col">体重</th>
@@ -21,11 +21,11 @@
             <tbody>
                 @foreach($diaries as $diary)
                 <tr>
-                    <th scope="row">{{$diary->created_at->format('Y-m-d')}}</th>
+                    <td> {{ $diary->user->name }}</td>
                     <td> {!! nl2br(e($diary->temperature)) !!}</td>
                     <td> {!! nl2br(e($diary->condition)) !!}</td>
                     <td> {!! nl2br(e($diary->weight)) !!}</td>
-                    <td><a href="{{route('diaries.show',$diary->id)}}"><button class="btn btn-primary">詳細</button></a></td>
+                    <td><a href="{{route('diaries.show',$diary->id)}}"><button class="btn text-light" style= 'background:#68ad9e;;'>詳細</button></a></td>
                 </tr>
                 @endforeach
             </tbody>
@@ -37,23 +37,15 @@
         </div>
     </div>
     <div class="row justify-content-center my-3">
-        <a href="{{route('admins.create')}}"><button class="btn btn-outline-danger">選手登録</button></a>
+        <a href="{{route('admins.create')}}"><button class="btn text-light" style='background:#0f8eae;;'>選手登録</button></a>
     </div>
-    <!-- <div class="row justify-content-center my-3">
-        <div class="col-auto">
-            <input type="text" class="form-control" placeholder="選手名を入力">
-        </div>
-        <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3">検索</button>
-        </div>
-    </div> -->  
     <form method="GET" action="{{ route('admins.index') }}">
         <div class="row justify-content-center my-3">
             <div class="col-auto">
                 <input type="search" class="form-control" placeholder="ユーザー名を入力" name="search" value="@if (isset($search)) {{ $search }} @endif">
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3">検索</button>
+                <button type="submit" class="btn text-light mb-3" style='background:#0f8eae;;'>検索</button>
             
                 <button class="btn btn-secondary mb-3">
                 <a href="{{ route('admins.index') }}" class="text-white">クリア</a>

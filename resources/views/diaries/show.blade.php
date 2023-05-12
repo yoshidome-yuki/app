@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center my-4">
-        <div class="card mx-3" style="width: 20rem;">
+        <div class="card mx-3" style="width: 60rem;">
             <div class="card-body">
                 <h5 class="card-title text-center">{{$diary->created_at->format('Y-m-d')}}</h5>
                 <ul class="list-group list-group-flush">
@@ -19,13 +19,13 @@
             </div>
         </div>
     </div>
-    @if($diary->user_id==Auth::user()->id || Auth::user()->role==1)
+    @if($diary->user_id==Auth::user()->id)
     <div class="row justify-content-center my-3">
-        <a href="{{route('diaries.edit', $diary->id)}}"><button class="btn btn-danger mr-3">編集</button></a>
+        <a href="{{route('diaries.edit', $diary->id)}}"><button class="btn text-light mr-3" style= 'background:#eb5252;;'>編集</button></a>
         <form action="{{route('diaries.destroy', $diary->id)}}" method="post" class="float-right">
             @csrf
             @method('delete')
-            <input type="submit" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
+            <input type="submit" value="削除" class="btn text-light" style='background:#eb5252;;' onclick='return confirm("削除しますか？");'>
         </form>
     </div>
     @endif
@@ -60,7 +60,7 @@
         </div>
         <div class="row justify-content-center my-1">
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3">投稿</button>
+                <button type="submit" class="btn text-light mb-3" style='background:#0f8eae;;'>投稿</button>
             </div>
         </div>
     </form>
