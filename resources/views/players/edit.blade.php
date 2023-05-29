@@ -17,9 +17,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="goal" class="form-label">目標</label>
-                            <textarea class="form-control" id="goal" name="goal">
-                                {{$player->goal}}
-                            </textarea>
+                            <textarea class="form-control" id="goal" name="goal"></textarea>
                         </div>
 
                         <div class="form-group row mb-0 justify-content-center">

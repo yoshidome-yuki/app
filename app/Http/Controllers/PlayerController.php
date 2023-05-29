@@ -72,23 +72,19 @@ class PlayerController extends Controller
         $weight_log = [];
         $dates = [];
         $player=User::find($id);
-        $diaries=Diary::where('user_id',$id)->paginate(7);
+        $diaries=Diary::where('user_id',$id)->get();
 
-        $period = CarbonPeriod::start(Carbon::today()->subDay(7))->untilNow()->toArray();
-        foreach($period as $date){
-            $dates[] = $date->format('Y/m/d');
-        }
-
-        $sevendays=Carbon::today()->subDay(7);
-        $logs=Diary::where('user_id',$id)->whereDate('created_at', '>=', $sevendays)->get();
+        $logs=Diary::where('user_id',$id)->orderBy('created_at', 'desc')->limit(7)->get();
         foreach($logs as $log){
             $weight_log[] = $log->weight; 
-        }   
+            $dates[] = $log->created_at->format('Y/m/d');
+        }
+        $sorted = array_reverse($dates);
 
         return view('players.show',[
             'player'=>$player,
             'diaries'=>$diaries,
-            'dates' => $dates,
+            'dates' => $sorted,
             'weight_log'=>$weight_log, 
         ]);
     }
